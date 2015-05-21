@@ -1,6 +1,12 @@
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+AX_INIT
+
 AC_PREREQ([2.69])
 
-AC_INIT([Native Installer], [0.1],
+AC_INIT([Native Installer], [ni_version],
 [https://github.com/clambers/native-installer/issues], [],
 [https://github.com/clambers/native-installer])
 
@@ -16,7 +22,8 @@ LT_INIT
 
 AC_PROG_CXX
 AC_PROG_LN_S
-PKG_CHECK_MODULES([dlog], [dlog])
+
+AX_CONFIG_VERSION
 
 AC_CONFIG_HEADERS([common/tzconfig.hh])
 AC_CONFIG_FILES([Makefile common/Makefile backend/Makefile
