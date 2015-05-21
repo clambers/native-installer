@@ -7,3 +7,6 @@ backenddir = $(sysconfdir)/package-manager/backendlib
 
 install-exec-hook:
 	$(LN_S) $(DESTDIR)$(libdir)/libnative-backend.so $(DESTDIR)$(backenddir)/librpm.so
+
+uninstall-hook:
+	cd $(backenddir) && test -h librpm.so && rm -f librpm.so

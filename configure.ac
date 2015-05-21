@@ -15,6 +15,7 @@ AM_SILENT_RULES([yes])
 LT_INIT
 
 AC_PROG_CXX
+AC_PROG_LN_S
 PKG_CHECK_MODULES([dlog], [dlog])
 
 AC_CONFIG_HEADERS([common/tzconfig.hh])

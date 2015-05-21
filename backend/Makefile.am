@@ -7,3 +7,6 @@ backenddir = $(sysconfdir)/package-manager/backend
 
 install-exec-hook:
 	$(LN_S) $(DESTDIR)$(bindir)/native-backend$(EXEEXT) $(DESTDIR)$(backenddir)/rpm
+
+uninstall-hook:
+	cd $(backenddir) && test -h rpm && rm -f rpm
