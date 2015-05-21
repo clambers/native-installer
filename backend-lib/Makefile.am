@@ -11,7 +11,8 @@ libnative_backend_la_LDFLAGS = $(NI_LT_LDFLAGS)
 backlibdir = $(sysconfdir)/package-manager/backendlib
 
 install-exec-hook:
+	$(MKDIR_P) $(backlibdir)
 	$(LN_S) $(DESTDIR)$(libdir)/libnative-backend.so.$(NI_LT_DOTVERSION) $(DESTDIR)$(backlibdir)/librpm.so
 
 uninstall-hook:
-	cd $(backenddir) && test -h librpm.so && rm -f librpm.so
+	cd $(backlibdir) && test -h librpm.so && rm -f librpm.so

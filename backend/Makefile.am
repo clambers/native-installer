@@ -7,10 +7,11 @@ bin_PROGRAMS = native-backend
 native_backend_SOURCES = backend.cc
 native_backend_CXXFLAGS = -std=c++11
 
-backenddir = $(sysconfdir)/package-manager/backend
+backdir = $(sysconfdir)/package-manager/backend
 
 install-exec-hook:
-	$(LN_S) $(DESTDIR)$(bindir)/native-backend$(EXEEXT) $(DESTDIR)$(backenddir)/rpm
+	$(MKDIR_P) $(DESTDIR)$(backdir)
+	$(LN_S) $(DESTDIR)$(bindir)/native-backend$(EXEEXT) $(DESTDIR)$(backdir)/rpm
 
 uninstall-hook:
-	cd $(backenddir) && test -h rpm && rm -f rpm
+	cd $(backdir) && test -h rpm && rm -f rpm
