@@ -6,5 +6,4 @@ libnative_backend_la_CXXFLAGS = -std=c++11
 backenddir = $(sysconfdir)/package-manager/backendlib
 
 install-exec-hook:
-	$(LN_S) $(DESTDIR)$(libdir)/libnative-backend$(LIBEXT) \
-	$(DESTDIR)$(backenddir)/librpm$(LIBEXT)
+	$(LN_S) $(DESTDIR)$(libdir)/libnative-backend.so $(DESTDIR)$(backenddir)/librpm.so
