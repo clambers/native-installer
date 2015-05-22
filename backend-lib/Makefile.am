@@ -2,17 +2,18 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-lib_LTLIBRARIES = libnative-backend.la
+libsubdir = $(libdir)/$(PACKAGE_TARNAME)
+lib_LTLIBRARIES = backendlib.la
 
-libnative_backend_la_SOURCES = backend-lib.cc
-libnative_backend_la_CXXFLAGS = -std=c++11
-libnative_backend_la_LDFLAGS = $(NI_LT_LDFLAGS)
+backendlib_la_SOURCES = backend-lib.cc
+backendlib_la_CXXFLAGS = -std=c++11
+backendlib_la_LDFLAGS = -module $(NI_LT_LDFLAGS)
 
 backlibdir = $(sysconfdir)/package-manager/backendlib
 
 install-exec-hook:
 	$(MKDIR_P) $(DESTDIR)$(backlibdir)
-	$(LN_S) $(DESTDIR)$(libdir)/libnative-backend.so.$(NI_LT_DOTVERSION) $(DESTDIR)$(backlibdir)/librpm.so
+	$(LN_S) $(DESTDIR)$(libsubdir)/backendlib.so $(DESTDIR)$(backlibdir)/librpm.so
 
 uninstall-hook:
-	cd $(backlibdir) && test -h librpm.so && rm -f librpm.so
+	cd $(DESTDIR)$(backlibdir) && test -h librpm.so && rm -f librpm.so

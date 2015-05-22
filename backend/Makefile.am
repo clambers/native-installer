@@ -2,16 +2,17 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-bin_PROGRAMS = native-backend
+binsubdir = $(bindir)/$(PACKAGE_TARNAME)
+binsub_PROGRAMS = backend
 
-native_backend_SOURCES = backend.cc
-native_backend_CXXFLAGS = -std=c++11
+backend_SOURCES = backend.cc
+backend_CXXFLAGS = -std=c++11
 
 backdir = $(sysconfdir)/package-manager/backend
 
 install-exec-hook:
 	$(MKDIR_P) $(DESTDIR)$(backdir)
-	$(LN_S) $(DESTDIR)$(bindir)/native-backend$(EXEEXT) $(DESTDIR)$(backdir)/rpm
+	$(LN_S) $(DESTDIR)$(binsubdir)/backend$(EXEEXT) $(DESTDIR)$(backdir)/rpm
 
 uninstall-hook:
-	cd $(backdir) && test -h rpm && rm -f rpm
+	cd $(DESTDIR)$(backdir) && test -h rpm && rm -f rpm
