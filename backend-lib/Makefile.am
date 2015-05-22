@@ -3,11 +3,11 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 libsubdir = $(libdir)/$(PACKAGE_TARNAME)
-lib_LTLIBRARIES = backendlib.la
+libsub_LTLIBRARIES = backendlib.la
 
 backendlib_la_SOURCES = backend-lib.cc
 backendlib_la_CXXFLAGS = -std=c++11
-backendlib_la_LDFLAGS = -module $(NI_LT_LDFLAGS)
+backendlib_la_LDFLAGS = -module -avoid-version
 
 backlibdir = $(sysconfdir)/package-manager/backendlib
 
